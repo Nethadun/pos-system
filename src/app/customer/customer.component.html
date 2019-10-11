@@ -1,0 +1,80 @@
+<body>
+<div class="con">
+  <form id="customerForm" autocomplete="off" #CustomerForm="ngForm">
+    <div class="ui form" >
+      <div class="field">
+        <label>Customer Name</label>
+        <input placeholder="Customer Name" required="required" type="text" [(ngModel)]="customerDto.custName" name="custName"
+               #custName="ngModel">
+        <div *ngIf="custName.invalid && (custName.dirty || custName.touched)" class="alert jasmine-alert">
+          <div *ngIf="custName.errors.required">
+            Customer name is required.
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Address</label>
+        <input placeholder="Address" required="required" type="text" [(ngModel)]="customerDto.address" name="add" #add="ngModel">
+        <div *ngIf="add.invalid && (add.dirty || add.touched)" class="alert jasmine-alert">
+          <div *ngIf="add.errors.required">
+            Address is required.
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Telephone Number</label>
+        <input  placeholder="telephone number" required="required" minlength="10" maxlength="10" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" type="text" [(ngModel)]="customerDto.tel" name="tel" #tel="ngModel">
+        <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert jasmine-alert">
+          <div *ngIf="tel.errors.required">
+            Telephone Number is required.
+          </div>
+          <div *ngIf="tel.errors.minlength">
+            Minimum lenght is 10
+          </div>
+          <div *ngIf="tel.errors.maxlength">
+            Maximum lenght is 10
+          </div>
+          <div *ngIf="tel.errors.pattern">
+            Numbers required
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="inline field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden" >
+      <label>I agree to the terms and Details</label>
+    </div>
+  </div>
+  <div class="ui inverted segment">
+    <button class="ui inverted button" type="button" [disabled]="CustomerForm.invalid" (click)="customerSave()" >
+      Save</button>
+    <button class="ui inverted green button">Refresh</button>
+  </div>
+  <table class="ui selectable inverted table" id="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Customer Name</th>
+      <th>Address</th>
+      <th>Tel</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let cus of customerList">
+    <tr>
+      <th>{{cus.cid}}</th>
+      <td>{{cus.custName}}</td>
+      <td>{{cus.address}}</td>
+      <td>{{cus.tel}}</td>
+      <td><button class="ui inverted red button" (click)="deleteCustomer(cus.cid)">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+</div>
+<script src="../../assets/js/jquery-3.4.1.min.js"></script>
+</body>
+
+

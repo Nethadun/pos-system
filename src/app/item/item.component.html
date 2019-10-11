@@ -1,0 +1,53 @@
+<body>
+<div class="con">
+  <form id="itemForm">
+    <div class="ui form">
+      <div class="field">
+        <label>Item Name</label>
+        <input placeholder="Item Name" [(ngModel)]="itemDto.itemName" name="itemName" type="text">
+      </div>
+      <div class="field">
+        <label>Qty On Hand</label>
+        <input placeholder="Qty On Hand" [(ngModel)]="itemDto.qty" name="itemName" type="text">
+      </div>
+      <div class="field">
+        <label>Unit Price</label>
+        <input placeholder="Unit Price" [(ngModel)]="itemDto.unitPrice" name="itemName" type="text">
+      </div>
+    </div>
+  </form>
+  <div class="inline field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>I agree to the terms and Details</label>
+    </div>
+  </div>
+  <div class="ui inverted segment">
+    <button class="ui inverted button" type="button" (click)="itemSave()">Save</button>
+    <button class="ui inverted green button">Refresh</button>
+  </div>
+  <table class="ui selectable inverted table" id="table1">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Item Name</th>
+      <th>Qty On Hand</th>
+      <th>Unit Price</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let item of itemList">
+    <tr>
+      <th>{{item.code}}</th>
+      <td>{{item.itemName}}</td>
+      <td>{{item.qty}}</td>
+      <td>{{item.unitPrice}}</td>
+      <td><button class="ui inverted red button" (click)="deleteItem(item.code)">Delete</button></td>
+
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+</div>
+<script src="../../assets/js/jquery-3.4.1.min.js"></script>
+</body>

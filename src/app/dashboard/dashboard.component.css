@@ -1,0 +1,17 @@
+.con{
+  width: 1000px;
+  padding-right: 10px;
+  position: absolute;
+  top: 100px;
+  left: 370px;
+}
+#cust_Card{
+   margin-left: 20px;
+ }
+#item_Card{
+  margin-left: 120px;
+}
+
+#readme{
+  width: 760px;
+}

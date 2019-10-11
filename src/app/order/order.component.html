@@ -1,0 +1,132 @@
+<body>
+<div class="con">
+  <form autocomplete="off" #orderForm="ngForm">
+    <div class="ui form">
+      <div class="field">
+        <label>Date</label>
+        <input placeholder="date" type="date" [(ngModel)]="dto.date" name="date">
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+          <label>Customer Name</label>
+          <select [(ngModel)]="customerDto.cid" name="custName" required id="custName"
+                  #custName="ngModel" class="form-control form-control">
+            <option [value]="cus.cid" *ngFor="let cus of customerList">
+              {{cus.custName}}
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Customer ID</label>
+          <input type="text" [(ngModel)]="customerDto.cid" name="custId" >
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Item Name</label>
+        <input type="text" placeholder="#search Item here" name="search" [(ngModel)]="searchText" autocomplete="off" >
+      </div>
+
+      <table class="ui selectable inverted table" id="table1" maxlength="5">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Item Name</th>
+          <th>Qty On Hand</th>
+          <th>Unit Price</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of itemList| tableFilter:searchText:'itemName'">
+        <tr>
+          <td>{{item.code}}</td>
+          <td>{{item.itemName}}</td>
+          <td>{{item.qty}}</td>
+          <td>{{item.unitPrice}}</td>
+          <td><button class="ui inverted violet button">buy</button></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="two fields">
+        <div class="field">
+          <label>Item Code</label>
+          <input placeholder="Item Code" type="text" [(ngModel)]="itemDto.code" name="code" >
+        </div>
+        <div class="field">
+          <label>Available Qty</label>
+          <input placeholder="Qty" [(ngModel)]="itemDto.itemName" type="text" name="qty" id="qtyq" disabled>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Unit Price</label>
+          <input type="text"  name="unit" id="unit">
+        </div>
+        <div class="field">
+          <label>Buying Qty</label>
+          <input placeholder="Qty" type="text" name="qty" id="qty" >
+        </div>
+      </div>
+      <button class="positive ui button">Add to Card</button>
+      <br>
+      <br>
+      <br>
+      <table class="ui selectable inverted table" id="table">
+        <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Qty</th>
+          <th>Unit Price</th>
+          <th class="right aligned">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th><button class="ui inverted red button">delete</button></th>
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      <div class="two fields">
+        <div class="field">
+          <label>Total</label>
+          <input placeholder="Total" type="text" name="total" id="total">
+        </div>
+        <div class="field">
+          <label>Discount</label>
+          <input placeholder="Discount" type="text" name="discount">
+        </div>
+        <div class="field">
+          <label>Amount</label>
+          <input placeholder="Amount" type="text" name="amount">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Paid RS</label>
+          <input placeholder="Paid RS" type="text">
+        </div>
+        <div class="field">
+          <label>Balance</label>
+          <input placeholder="Balance" type="text">
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="inline field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>I agree to the terms and Details</label>
+    </div>
+  </div>
+  <div class="ui inverted segment">
+    <button class="ui inverted button" id="proceed" (click)="orderSave()">Proceed</button>
+  </div>
+  <br>
+  <br>
+</div>
+</body>
